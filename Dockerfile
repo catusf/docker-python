@@ -1,7 +1,5 @@
 FROM alpine:3.1
 
-git pull 
-
 # Update
 RUN apk add --update git python py-pip
 
