@@ -3,15 +3,18 @@ FROM alpine:3.1
 git pull 
 
 # Update
-RUN apk add --update python py-pip
+RUN apk add --update git python py-pip
 
 # Install app dependencies
 
-#ADD requirements.txt /tmp/requirements.txt
-#RUN pip install -qr /tmp/requirements.txt
+RUN git clone https://github.com/catusf/docker-python.git
 
-ADD app.py /opt/webapp/app.py
-WORKDIR /opt/webapp
+WORKDIR ./docker-python
+
+#ADD requirements.txt /tmp/requirements.txt
+RUN pip install -qr requirements.txt
+
+#ADD app.py /opt/webapp/app.py
 EXPOSE 5000
 
 CMD ["python", "app.py"]
